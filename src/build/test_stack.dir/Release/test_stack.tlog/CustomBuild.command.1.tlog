@@ -1,0 +1,10 @@
+^D:\DOCUMENTS\ANGELA - UNIVERSITY OF LONDON\COURSES\ALGORITHMS AND DATA STRUCTURES II\WEEK10\MIDTERM\POSFIX++\SRC\CMAKELISTS.TXT
+setlocal
+C:\Users\aloza\Softwares\cmake-3.30.0-rc3-windows-x86_64\bin\cmake.exe "-SD:/Documents/Angela - University Of London/COURSES/Algorithms and Data Structures II/WEEK10/MIDTERM/Posfix++/src" "-BD:/Documents/Angela - University Of London/COURSES/Algorithms and Data Structures II/WEEK10/MIDTERM/Posfix++/src/build" --check-stamp-file "D:/Documents/Angela - University Of London/COURSES/Algorithms and Data Structures II/WEEK10/MIDTERM/Posfix++/src/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

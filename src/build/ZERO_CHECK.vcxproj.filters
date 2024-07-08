@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Documents\Angela - University Of London\COURSES\Algorithms and Data Structures II\WEEK10\MIDTERM\Posfix++\src\build\CMakeFiles\2196847df8ead2c6b962d87d4c337072\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{075C8595-9A22-3839-92CB-EBFAA0B4AFCC}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,87 @@
+CONSTANT MAX_SIZE ← 26 //maximum size of the table
+DECLARE table[0..MAX_SIZE-1] OF DOUBLE
+// Array to store the values associated with the keys.
+DECLARE isSet[0..MAX_SIZE-1] OF BOOLEAN
+//Array to indicate whether a value has been set for each key in the table.
+
+/**
+ * Initializes the symbol table by setting all entries as unset.
+ */
+SYMBOL_TABLE_INITIALIZE()
+    FOR i ← 0 TO MAX_SIZE - 1 DO
+        isSet[i] ← false
+    END FOR
+END SYMBOL_TABLE_INITIALIZE
+
+
+/**
+ * Hash function to calculate the index for a given key.
+ * @param key The character key to be hashed.
+ * @return The index corresponding to the key.
+ */
+HASH(key)
+    RETURN ASCII(key) MOD MAX_SIZE
+END HASH
+
+
+/**
+ * Checks if the given key is valid.
+ * @param key The character key to be validated.
+ * @return True if the key is between 'A' and 'Z', false otherwise.
+ */
+IS_VALID_KEY(key)
+    IF (key is a letter between "A" AND "Z") THEN
+        return TRUE
+    ELSE return FALSE
+END IS_VALID_KEY
+
+
+/**
+ * Inserts a key-value pair into the symbol table.
+ * @param key The character key to be inserted.
+ * @param value The value associated with the key.
+ * @throws OutOfRange if the key is invalid.
+ */
+INSERT(key, value)
+    IF NOT IS_VALID_KEY(key) THEN
+        THROW "Invalid key: must be between 'A' and 'Z'."
+    END IF
+    index ← HASH(key)
+    table[index] ← value
+    isSet[index] ← true
+END INSERT
+
+
+/**
+ * Searches for a value associated with a given key in the symbol table.
+ * @param key The character key to be searched.
+ * @return The value associated with the key.
+ * @throws OutOfRange if the key is invalid or not set.
+ */
+SEARCH(key)
+    IF NOT IS_VALID_KEY(key) THEN
+        THROW "Invalid key: must be between 'A' and 'Z'."
+    END IF
+    index ← HASH(key)
+    IF NOT isSet[index] THEN
+        THROW "Key not found: the specified key is not set."
+    END IF
+    RETURN table[index]
+END SEARCH
+
+
+/**
+ * Removes a key-value pair from the symbol table.
+ * @param key The character key to be removed.
+ * @throws OutOfRange if the key is invalid or not set.
+ */
+REMOVE(key)
+    IF NOT IS_VALID_KEY(key) THEN
+        THROW "Invalid key: must be between 'A' and 'Z'."
+    END IF
+    index ← HASH(key)
+    IF NOT isSet[index] THEN
+        THROW "Key not found: the specified key is not set."
+    END IF
+    isSet[index] ← false
+END REMOVE

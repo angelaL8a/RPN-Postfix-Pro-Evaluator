@@ -1,0 +1,10 @@
+^D:\DOCUMENTS\ANGELA - UNIVERSITY OF LONDON\COURSES\ALGORITHMS AND DATA STRUCTURES II\WEEK10\MIDTERM\POSFIX++\SRC\BUILD\CMAKEFILES\2196847DF8EAD2C6B962D87D4C337072\GENERATE.STAMP.RULE
+setlocal
+C:\Users\aloza\Softwares\cmake-3.30.0-rc3-windows-x86_64\bin\cmake.exe "-SD:/Documents/Angela - University Of London/COURSES/Algorithms and Data Structures II/WEEK10/MIDTERM/Posfix++/src" "-BD:/Documents/Angela - University Of London/COURSES/Algorithms and Data Structures II/WEEK10/MIDTERM/Posfix++/src/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "D:/Documents/Angela - University Of London/COURSES/Algorithms and Data Structures II/WEEK10/MIDTERM/Posfix++/src/build/StackTests.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,185 @@
+/**
+ * Evaluates a token as either a variable or a number.
+ * @param token The token to evaluate.
+ * @return The numeric value of the token.
+ */
+FUNCTION EVALUATE_VALUE(token)
+    IF IS_VARIABLE(token) THEN
+        RETURN SYMBOL_TABLE.SEARCH(token)
+    ELSE
+        RETURN TO_NUMBER(token)
+    END IF
+END FUNCTION
+
+
+/**
+ * Checks if a token is a number.
+ * @param token The token to check.
+ * @return TRUE if the token is a number, FALSE otherwise.
+ */
+FUNCTION IS_NUMBER(token)
+    if token can be converted to a number:
+        return TRUE
+    return FALSE otherwise
+END FUNCTION
+
+
+/**
+ * Checks if a token is a variable.
+ * @param token The token to check.
+ * @return TRUE if the token is a variable, FALSE otherwise.
+ */
+FUNCTION IS_VARIABLE(token)
+    IF LENGTH(token) = 1
+    AND token is a letter between "A" AND "Z"
+        return TRUE
+    return FALSE
+END FUNCTION
+
+
+/**
+ * Performs the given mathematical operation using values from the stack.
+ * @param operation The operation to perform.
+ * @throws Runtime error if the operation is invalid.
+ */
+FUNCTION PERFORM_OPERATION(operation)
+    DECLARE a, b AS DOUBLE
+    DECLARE validOperations AS ARRAY OF STRING = ["+", "-", "*", "/", "%", "pow", "sqrt", "cbrt", "hyp", "floor", "ceil", "abs", "sgn", "round", "!", "log10", "log2", "perm", "comb", "gcd", "lcm", "sin", "cos", "tan", "asin", "acos", "atan"]
+    
+    IF operation NOT IN validOperations THEN
+        THROW "Invalid token in expression: " + operation
+    END IF
+
+    IF operation = "+" THEN
+        b ← EVALUATE_VALUE(stack.POP())
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.ADD(a, b)))
+    ELSEIF operation = "-" THEN
+        b ← EVALUATE_VALUE(stack.POP())
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.SUBTRACT(a, b)))
+    ELSEIF operation = "*" THEN
+        b ← EVALUATE_VALUE(stack.POP())
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.MULTIPLY(a, b)))
+    ELSEIF operation = "/" THEN
+        b ← EVALUATE_VALUE(stack.POP())
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.DIVIDE(a, b)))
+    ELSEIF operation = "%" THEN
+        b ← TO_INTEGER(EVALUATE_VALUE(stack.POP()))
+        a ← TO_INTEGER(EVALUATE_VALUE(stack.POP()))
+        stack.PUSH(TO_STRING(MathOperations.MODULUS(a, b)))
+    ELSEIF operation = "pow" THEN
+        b ← EVALUATE_VALUE(stack.POP())
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.POWER(a, b)))
+    ELSEIF operation = "sqrt" THEN
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.SQUARE_ROOT(a)))
+    ELSEIF operation = "cbrt" THEN
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.CUBE_ROOT(a)))
+    ELSEIF operation = "hyp" THEN
+        b ← EVALUATE_VALUE(stack.POP())
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.HYPOTENUSE(a, b)))
+    ELSEIF operation = "floor" THEN
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.FLOOR(a)))
+    ELSEIF operation = "ceil" THEN
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.CEIL(a)))
+    ELSEIF operation = "abs" THEN
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.ABS(a)))
+    ELSEIF operation = "sgn" THEN
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.SIGN(a)))
+    ELSEIF operation = "round" THEN
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.ROUND(a)))
+    ELSEIF operation = "!" THEN
+        a ← TO_INTEGER(EVALUATE_VALUE(stack.POP()))
+        stack.PUSH(TO_STRING(MathOperations.FACTORIAL(a)))
+    ELSEIF operation = "log10" THEN
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.LOG10(a)))
+    ELSEIF operation = "log2" THEN
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.LOG2(a)))
+    ELSEIF operation = "perm" THEN
+        b ← TO_INTEGER(EVALUATE_VALUE(stack.POP()))
+        a ← TO_INTEGER(EVALUATE_VALUE(stack.POP()))
+        stack.PUSH(TO_STRING(MathOperations.PERM(a, b)))
+    ELSEIF operation = "comb" THEN
+        b ← TO_INTEGER(EVALUATE_VALUE(stack.POP()))
+        a ← TO_INTEGER(EVALUATE_VALUE(stack.POP()))
+        stack.PUSH(TO_STRING(MathOperations.COMB(a, b)))
+    ELSEIF operation = "gcd" THEN
+        b ← TO_INTEGER(EVALUATE_VALUE(stack.POP()))
+        a ← TO_INTEGER(EVALUATE_VALUE(stack.POP()))
+        stack.PUSH(TO_STRING(MathOperations.GCD(a, b)))
+    ELSEIF operation = "lcm" THEN
+        b ← TO_INTEGER(EVALUATE_VALUE(stack.POP()))
+        a ← TO_INTEGER(EVALUATE_VALUE(stack.POP()))
+        stack.PUSH(TO_STRING(MathOperations.LCM(a, b)))
+    ELSEIF operation = "sin" THEN
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.SIN(a)))
+    ELSEIF operation = "cos" THEN
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.COS(a)))
+    ELSEIF operation = "tan" THEN
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.TAN(a)))
+    ELSEIF operation = "asin" THEN
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.ARC_SIN(a)))
+    ELSEIF operation = "acos" THEN
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.ARC_COS(a)))
+    ELSEIF operation = "atan" THEN
+        a ← EVALUATE_VALUE(stack.POP())
+        stack.PUSH(TO_STRING(MathOperations.ARC_TAN(a)))
+    END IF
+END FUNCTION
+
+
+
+/**
+ * Evaluates a postfix expression.
+ * @param expression The postfix expression to evaluate.
+ * @return The result of the evaluation.
+ * @throws Runtime error if the expression is invalid.
+ */
+FUNCTION EVALUATE(expression)
+    DECLARE tokens AS LIST OF STRING = SPLIT(expression, " ")
+    DECLARE assign AS BOOL
+    
+    FOR EACH token IN tokens DO
+        IF IS_NUMBER(token) OR IS_VARIABLE(token) THEN
+            stack.PUSH(token)
+        ELSE IF token = "=" THEN
+            DECLARE value AS DOUBLE = EVALUATE_VALUE(stack.POP())
+            DECLARE key AS STRING = stack.POP()
+            IF LENGTH(key) ≠ 1 OR NOT IS_ALPHA(key[0]) THEN
+                THROW "Invalid variable name"
+            END IF
+            SYMBOL_TABLE.INSERT(key, value)
+            assign = true
+        ELSE
+            PERFORM_OPERATION(token)
+        END IF
+    END FOR
+
+    DECLARE  result as NULL
+    IF stack.is_empty() = FALSE
+        result = stack.pop()
+        if stack.is_empty() = FALSE THEN
+            stack.clearStack()
+            THROW "Invalid expression"
+    END IF
+    RETURN result
+END FUNCTION
+

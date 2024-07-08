@@ -1,0 +1,82 @@
+INITIAL_CAPACITY = 10; //maximum size of the stack
+T *items;           //Array to store stack elements
+int top;            //Index of the top of the stack
+int capacity;       //Actual capacity of the stack
+
+/**
+ * Initializes the stack by setting the top index to -1, 
+ indicating the stack is empty.
+ */
+STACK_INITIALIZE()
+    top ← -1
+    capacity ← INITIAL_CAPACITY  
+END STACK_INITIALIZE
+
+/**
+ * Resize the Array.
+ */
+RESIZE()
+    T temp = new T[capacity*2]
+    for (int i = 0; i < top; i++)
+    {temp[i] = items[i]}
+    items = temp
+    capacity = capacity * 2
+END RESIZE
+
+/**
+ * Pushes a value onto the stack.
+ * @param value The value to be pushed onto the stack.
+ * @throws OverflowError if the stack is full.
+ */
+PUSH(value)
+    PUSH(value)
+        IF (top ≥ capacity - 1) RESIZE()
+        top ← top + 1
+        items[top] ← value
+    END PUSH
+END PUSH
+
+
+/**
+ * Pops the top value from the stack.
+ * @return The value at the top of the stack.
+ * @throws UnderflowError if the stack is empty.
+ */
+POP()
+    IF top < 0 THEN
+        THROW "Stack is empty: cannot pop."
+    END IF
+    value ← items[top]
+    top ← top - 1
+    RETURN value
+END POP
+
+
+/**
+ * Peeks at the top value of the stack without removing it.
+ * @return The value at the top of the stack.
+ * @throws UnderflowError if the stack is empty.
+ */
+PEEK()
+    IF top < 0 THEN
+        THROW "Stack is empty: cannot peek."
+    END IF
+    RETURN items[top]
+END PEEK
+
+
+/**
+ * Checks if the stack is empty.
+ * @return True if the stack is empty, false otherwise.
+ */
+IS_EMPTY()
+    RETURN top = -1
+END IS_EMPTY
+
+/**
+ * Clear the stack.
+ */
+CLEAR_STACK()
+    top ← - 1
+END CLEAR_STACK
+

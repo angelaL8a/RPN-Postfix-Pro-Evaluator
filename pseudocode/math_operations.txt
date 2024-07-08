@@ -1,0 +1,303 @@
+/**
+ * Adds two numbers.
+ * @param a The first number.
+ * @param b The second number.
+ * @return The sum of a and b.
+ */
+FUNCTION ADD(a, b)
+    RETURN a + b
+END FUNCTION
+
+
+/**
+ * Subtracts the second number from the first number.
+ * @param a The first number.
+ * @param b The second number.
+ * @return The difference between a and b.
+ */
+FUNCTION SUBTRACT(a, b)
+    RETURN a - b
+END FUNCTION
+
+
+/**
+ * Multiplies two numbers.
+ * @param a The first number.
+ * @param b The second number.
+ * @return The product of a and b.
+ */
+FUNCTION MULTIPLY(a, b)
+    RETURN a * b
+END FUNCTION
+
+/**
+ * Divides the first number by the second number.
+ * @param a The first number.
+ * @param b The second number.
+ * @return The quotient of a divided by b.
+ * @throws Runtime error if b is zero.
+ */
+FUNCTION DIVIDE(a, b)
+    IF b = 0 THEN
+        THROW "Division by zero"
+    END IF
+    RETURN a / b
+END FUNCTION
+
+
+/**
+ * Raises the first number to the power of the second number.
+ * @param a The base number.
+ * @param b The exponent.
+ * @return The result of a raised to the power of b.
+ */
+FUNCTION POWER(a, b)
+    RETURN a ^ b
+END FUNCTION
+
+
+/**
+ * Computes the modulus of two numbers.
+ * @param a The first number.
+ * @param b The second number.
+ * @return The remainder of a divided by b.
+ */
+FUNCTION MODULUS(a, b)
+    RETURN a MOD b
+END FUNCTION
+
+
+/**
+ * Computes the square root of a number.
+ * @param a The number.
+ * @return The square root of a.
+ */
+FUNCTION SQUARE_ROOT(a)
+    RETURN √a
+END FUNCTION
+
+
+/**
+ * Computes the cube root of a number.
+ * @param a The number.
+ * @return The cube root of a.
+ */
+FUNCTION CUBE_ROOT(a)
+    RETURN a^(1/3)
+END FUNCTION
+
+
+/**
+ * Computes the hypotenuse given two sides of a right triangle.
+ * @param x The first side.
+ * @param y The second side.
+ * @return The hypotenuse of the triangle.
+ */
+FUNCTION HYPOTENUSE(x, y)
+    RETURN √(x^2 + y^2)
+END FUNCTION
+
+
+/**
+ * Computes the floor of a number.
+ * @param a The number.
+ * @return The largest integer less than or equal to a.
+ */
+FUNCTION FLOOR(a)
+    RETURN ⌊a⌋
+END FUNCTION
+
+
+/**
+ * Computes the ceiling of a number.
+ * @param a The number.
+ * @return The smallest integer greater than or equal to a.
+ */
+FUNCTION CEIL(a)
+    RETURN ⌈a⌉
+END FUNCTION
+
+
+/**
+ * Computes the absolute value of a number.
+ * @param a The number.
+ * @return The absolute value of a.
+ */
+FUNCTION ABS(a)
+    RETURN |a|
+END FUNCTION
+
+
+/**
+ * Computes the sign of a number.
+ * @param a The number.
+ * @return 1 if a is positive, -1 if a is negative, 0 if a is zero.
+ */
+FUNCTION SIGN(a)
+    IF a > 0 THEN
+        RETURN 1
+    ELSE IF a < 0 THEN
+        RETURN -1
+    ELSE
+        RETURN 0
+    END IF
+END FUNCTION
+
+
+/**
+ * Rounds a number to the nearest integer.
+ * @param a The number.
+ * @return The rounded value of a.
+ */
+FUNCTION ROUND(a)
+    RETURN ROUND(a)
+END FUNCTION
+
+
+/**
+ * Computes the factorial of a number.
+ * @param n The number.
+ * @return The factorial of n.
+ * @throws Invalid argument if n is negative.
+ */
+FUNCTION FACTORIAL(n)
+    IF n < 0 THEN
+        THROW "Factorial is not defined for negative numbers"
+    ELSE IF n = 0 OR n = 1 THEN
+        RETURN 1
+    ELSE
+        RETURN n * FACTORIAL(n - 1)
+    END IF
+END FUNCTION
+
+
+/**
+ * Computes the base-10 logarithm of a number.
+ * @param a The number.
+ * @return The base-10 logarithm of a.
+ */
+FUNCTION LOG10(a)
+    RETURN LOG10(a)
+END FUNCTION
+
+
+/**
+ * Computes the base-2 logarithm of a number.
+ * @param a The number.
+ * @return The base-2 logarithm of a.
+ */
+FUNCTION LOG2(a)
+    RETURN LOG2(a)
+END FUNCTION
+
+
+/**
+ * Computes the number of permutations of n items taken k at a time.
+ * @param n The total number of items.
+ * @param k The number of items taken at a time.
+ * @return The number of permutations.
+ * @throws Invalid argument if n or k is negative or k is greater than n.
+ */
+FUNCTION PERM(n, k)
+    IF n < 0 OR k < 0 OR k > n THEN
+        THROW "Invalid values for perm(n, k)"
+    END IF
+    RETURN FACTORIAL(n) / FACTORIAL(n - k)
+END FUNCTION
+
+
+/**
+ * Computes the number of combinations of n items taken k at a time.
+ * @param n The total number of items.
+ * @param k The number of items taken at a time.
+ * @return The number of combinations.
+ * @throws Invalid argument if n or k is negative or k is greater than n.
+ */
+FUNCTION COMB(n, k)
+    IF n < 0 OR k < 0 OR k > n THEN
+        THROW "Invalid values for comb(n, k)"
+    END IF
+    RETURN FACTORIAL(n) / (FACTORIAL(k) * FACTORIAL(n - k))
+END FUNCTION
+
+
+/**
+ * Computes the greatest common divisor (GCD) of two numbers.
+ * @param x The first number.
+ * @param y The second number.
+ * @return The GCD of x and y.
+ */
+FUNCTION GCD(x, y)
+    IF y = 0 THEN
+        RETURN ABS(x)
+    ELSE
+        RETURN GCD(y, x MOD y)
+    END IF
+END FUNCTION
+
+
+/**
+ * Computes the least common multiple (LCM) of two numbers.
+ * @param x The first number.
+ * @param y The second number.
+ * @return The LCM of x and y.
+ */
+FUNCTION LCM(x, y)
+    IF x = 0 OR y = 0 THEN
+        RETURN 0
+    ELSE
+        RETURN ABS(x * y) / GCD(x, y)
+    END IF
+END FUNCTION
+
+
+/**
+ * Computes the sine of a number.
+ * @param a The number.
+ * @return The sine of a.
+ */
+FUNCTION SIN(a)
+    RETURN SIN(a)
+END FUNCTION
+
+
+/**
+ * Computes the tangent of a number.
+ * @param a The number.
+ * @return The tangent of a.
+ */
+FUNCTION TAN(a)
+    RETURN TAN(a)
+END FUNCTION
+
+
+/**
+ * Computes the arcsine of a number.
+ * @param a The number.
+ * @return The arcsine of a.
+ */
+FUNCTION ARCSIN(a)
+    RETURN ARCSIN(a)
+END FUNCTION
+
+
+/**
+ * Computes the arccosine of a number.
+ * @param a The number.
+ * @return The arccosine of a.
+ */
+FUNCTION ARCCOS(a)
+    RETURN ARCCOS(a)
+END FUNCTION
+
+
+/**
+ * Computes the arctangent of a number.
+ * @param a The number.
+ * @return The arctangent of a.
+ */
+FUNCTION ARCTAN(a)
+    RETURN ARCTAN(a)
+END FUNCTION
+
+
