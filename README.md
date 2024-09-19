@@ -1,3 +1,7 @@
+![ViewCount](https://views.whatilearened.today/views/github/angelaL8a/RPN-Postfix-Pro-Evaluator.svg?cache=remove)
+![GitHub top language](https://img.shields.io/github/languages/top/angelaL8a/RPN-Postfix-Pro-Evaluator?style=flat)
+![GitHub language count](https://img.shields.io/github/languages/count/angelaL8a/RPN-Postfix-Pro-Evaluator?style=flat)
+
 # 🥳 Postfix++: The Ultimate Postfix Expression Evaluator 🚀
 
 ![Miniature](images/Picture.png)
